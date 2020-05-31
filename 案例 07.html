@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="echarts.js"></script>
+</head>
+
+<body>
+    <div id="myChart" style="width: 800px;height:600px;"></div>
+</body>
+
+</html>
+<script>
+    var myChart = echarts.init(document.getElementById('myChart'));
+    var option = {
+    title: {
+        text: '某站点访问用户来源',
+        subtext: '纯属虚构'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    legend: {
+        data: ['邮件营销','直接访问','联盟广告','视频广告','搜索引擎']
+    },
+
+    series: [
+        {
+            name:'漏斗图',
+            type:'funnel',
+            left: '10%',
+            top: 60,
+            //x2: 80,
+            bottom: 60,
+            width: '80%',
+            // height: {totalHeight} - y - y2,
+            min: 0,
+            max: 100,
+            minSize: '0%',
+            maxSize: '100%',
+            sort: 'descending',
+            gap: 2,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            labelLine: {
+                length: 10,
+                lineStyle: {
+                    width: 1,
+                    type: 'solid'
+                }
+            },
+            itemStyle: {
+                borderColor: '#fff',
+                borderWidth: 1
+            },
+            emphasis: {
+                label: {
+                    fontSize: 20
+                }
+            },
+            data: [
+                {value: 60, name: '邮件营销'},
+                {value: 40, name: '直接访问'},
+                {value: 20, name: '联盟广告'},
+                {value: 80, name: '视频广告'},
+                {value: 100, name: '搜索引擎'}
+            ]
+        }
+    ]
+};
+        myChart.setOption(option);
+</script>
